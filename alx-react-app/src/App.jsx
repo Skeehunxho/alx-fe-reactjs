@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import WelcomeMessage from './components/WelcomeMessage.jsx'
+import Header from './components/Header.jsx'
+import MainContent from './components/MainContent.jsx'
+import Footer from './components/Footer.jsx'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -30,6 +33,10 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <WelcomeMessage />
+      <Header />
+      <MainContent />
+      <Footer />
+    
     </>
   )
 }
