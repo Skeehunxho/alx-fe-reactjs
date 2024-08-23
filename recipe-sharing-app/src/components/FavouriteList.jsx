@@ -1,5 +1,3 @@
-// src/components/FavoritesList.jsx
-
 import { useRecipeStore } from '../recipeStore';
 
 const FavoritesList = () => {

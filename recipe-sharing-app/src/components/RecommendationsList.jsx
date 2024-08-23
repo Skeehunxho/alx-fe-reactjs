@@ -1,5 +1,3 @@
-// src/components/RecommendationsList.jsx
-
 import { useRecipeStore } from '../recipeStore';
 
 const RecommendationsList = () => {
