@@ -1,24 +1,28 @@
-// src/components/RecipeDetails.jsx
+// src/components/RecipeList.jsx
 
-import { useParams } from 'react-router-dom';  // Import useParams to get URL parameters
 import { useRecipeStore } from '../recipeStore';
+import { Link } from 'react-router-dom';  // Import Link
 
-const RecipeDetails = () => {
-  const { recipeId } = useParams();  // Get the recipeId from the URL
-  const recipe = useRecipeStore((state) =>
-    state.recipes.find((r) => r.id === parseInt(recipeId))
-  );
-
-  if (!recipe) {
-    return <p>Recipe not found!</p>;
-  }
+const RecipeList = () => {
+  const filteredRecipes = useRecipeStore((state) => state.filteredRecipes);  // Get filtered recipes
 
   return (
     <div>
-      <h1>{recipe.title}</h1>
-      <p>{recipe.description}</p>
+      {filteredRecipes.length > 0 ? (
+        filteredRecipes.map((recipe) => (
+          <div key={recipe.id}>
+            <h3>
+              {/* Link to the detailed recipe page */}
+              <Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link>  
+            </h3>
+            <p>{recipe.description}</p>
+          </div>
+        ))
+      ) : (
+        <p>No recipes found</p>
+      )}
     </div>
   );
 };
 
-export default RecipeDetails;
+export default RecipeList;
