@@ -1,36 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import RecipeList from './components/RecipeList'
-import AddRecipeForm from './components/AddRecipeForm'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// src/App.jsx
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import RecipeList from './components/RecipeList';
+import AddRecipeForm from './components/AddRecipeForm';
+import RecipeDetails from './components/RecipeDetails';
+import SearchBar from './components/SearchBar';
+import FavoritesList from './components/FavoritesList';
+import RecommendationsList from './components/RecommendationsList';
 
-
-
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
     <Router>
       <div>
-        <h1>Recipe Sharing Application</h1>
+        <h1>Recipe Sharing App</h1>
         <SearchBar />
         <AddRecipeForm />
-        
         <FavoritesList />
         <RecommendationsList />
-
         <Routes>
           <Route path="/" element={<RecipeList />} />
-          <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
+          <Route path="/recipe/:id" element={<RecipeDetailsWrapper />} />
         </Routes>
       </div>
-<RecipeList />
-<AddRecipeForm />
-<RecipeList />
     </Router>
   );
-}
+};
 
-export default App
+const RecipeDetailsWrapper = ({ match }) => {
+  const recipeId = match.params.id;
+  return <RecipeDetails recipeId={Number(recipeId)} />;
+};
+
+export default App;
