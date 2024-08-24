@@ -1,41 +1,18 @@
-// src/components/RecipeDetails.jsx
-
 import { useParams } from 'react-router-dom';
-import { useRecipeStore } from '../recipeStore';
 
-const RecipeDetails = () => {
+function RecipeDetails() {
   const { recipeId } = useParams();
-  const recipe = useRecipeStore(state =>
-    state.recipes.find((r) => r.id === parseInt(recipeId))
-  );
-  const addFavorite = useRecipeStore(state => state.addFavorite);
-  const removeFavorite = useRecipeStore(state => state.removeFavorite);
-  const favorites = useRecipeStore(state => state.favorites);
-
-  if (!recipe) {
-    return <p>Recipe not found!</p>;
-  }
-
-  const isFavorite = favorites.includes(recipe.id);
-
-  const handleFavoriteToggle = () => {
-    if (isFavorite) {
-      removeFavorite(recipe.id);
-    } else {
-      addFavorite(recipe.id);
-    }
-  };
+  const recipe = useRecipeStore(state => state.recipes.find(recipe => recipe.id === recipeId));
 
   return (
     <div>
-      <h1>{recipe.title}</h1>
-      <p>{recipe.description}</p>
-
-      <button onClick={handleFavoriteToggle}>
-        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-      </button>
+      {recipe && (
+        <>
+          <h1>{recipe.name}</h1>
+          {/* Display other recipe details */}
+        </>
+      )}
     </div>
   );
-};
-
+}
 export default RecipeDetails;

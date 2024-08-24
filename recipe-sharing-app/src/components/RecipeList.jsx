@@ -1,26 +1,28 @@
-// src/components/RecipeList.jsx
 
-import { useRecipeStore } from '../recipeStore';
-import { Link } from 'react-router-dom';  // Import Link
+import { useRecipeStore } from '.component/recipeStore';
+import { link } from 'react-router-dom';
 
 const RecipeList = () => {
-  const filteredRecipes = useRecipeStore((state) => state.filteredRecipes);  // Get filtered recipes
-
+  const recipes = useRecipeStore(state => state.recipes);
   return (
     <div>
-      {filteredRecipes.length > 0 ? (
-        filteredRecipes.map((recipe) => (
-          <div key={recipe.id}>
-            <h3>
-              {/* Link to the detailed recipe page */}
-              <Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link>  
-            </h3>
-            <p>{recipe.description}</p>
-          </div>
-        ))
-      ) : (
-        <p>No recipes found</p>
-      )}
+      {recipes.map(recipe => (
+        <div key={recipe.id}>
+          <h3>{recipe.title}</h3>
+          <p>{recipe.description}</p>
+          <h1>Recipe List</h1>
+     <ul>
+         <li key={recipe.id}>
+           {/* Using Link instead of anchor tag */}
+           <Link to={`/recipes/${recipe.id}`}>
+             <h2>{recipe.title}</h2>
+           </Link>
+           <p>{recipe.description}</p>
+         </li>
+     </ul>
+        </div>
+      ))}
+
     </div>
   );
 };

@@ -1,32 +1,21 @@
-import { useState } from 'react';
-import { useRecipeStore } from '../recipeStore';
+import { useDispatch } from 'zustand/hooks';
+import { recipeStore } from './path/to/your/store';
+import useRecipeStore from './RecipeStore';
 
-const EditRecipeForm = ({ recipe }) => {
-  const updateRecipe = useRecipeStore((state) => state.updateRecipe);
-  const [title, setTitle] = useState(recipe.title);
-  const [description, setDescription] = useState(recipe.description);
+function EditRecipeForm({ recipe }) {
+  const dispatch = useDispatch(recipeStore);
+  const [form, setForm] = useState(recipe);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    updateRecipe({ ...recipe, title, description });
+  const handleSubmit = (e) => {
+    event.preventDefault(useRecipeStore);
+    dispatch.updateRecipe(form);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Title"
-      />
-      <textarea
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        placeholder="Description"
-      />
-      <button type="submit">Update Recipe</button>
+      <input type="text" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
+      {/* Add other input fields */}
+      <button type="submit">Save Changes</button>
     </form>
   );
-};
-
-export default EditRecipeForm;
+}
