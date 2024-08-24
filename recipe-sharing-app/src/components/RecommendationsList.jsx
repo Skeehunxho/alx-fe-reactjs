@@ -1,11 +1,11 @@
-import { useRecipeStore } from '../recipeStore';
+import { useRecipeStore } from '.component/recipeStore';
 
 const RecommendationsList = () => {
   const recommendations = useRecipeStore(state => state.recommendations);
 
   return (
     <div>
-      <h2>Personalized Recommendations</h2>
+      <h2>Castomized Recommendations</h2>
       {recommendations.length > 0 ? (
         recommendations.map(recipe => (
           <div key={recipe.id}>
@@ -14,7 +14,7 @@ const RecommendationsList = () => {
           </div>
         ))
       ) : (
-        <p>No recommendations available.</p>
+        <p>No  current recomandation</p>
       )}
     </div>
   );
