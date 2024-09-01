@@ -1,17 +1,17 @@
-import React from 'react';
-import RegistrationForm from './components/RegistrationForm';
-import formikForm from './components/formikForm';
+import { useState } from 'react'
+import './App.css'
+import RegistrationForm from './components/RegistrationForm'
+import FormikForm from './components/formikForm'
 
-const App = () => {
+function App() {
+  const [count, setCount] = useState(0)
+
   return (
-    <div>
-      <h1>Controlled Form</h1>
-      <RegistrationForm />
+    <>
+    <RegistrationForm />
+    <FormikForm/>
+    </>
+  )
+}
 
-      <h1>Formik Form</h1>
-      <formikFormo />
-    </div>
-  );
-};
-
-export default App;
+export default App
