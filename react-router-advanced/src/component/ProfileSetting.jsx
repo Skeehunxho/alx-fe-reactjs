@@ -1,8 +1,7 @@
-// ProfileSettings.jsx
 import React from 'react';
-
-const ProfileSettings = () => {
-  return <div>Profile Settings Content</div>;
+function ProfileSetting(){
+  return(
+    <div><h3>Profile Setting</h3></div>
+  )
 };
-
-export default ProfileSettings;
+export default ProfileSetting;
