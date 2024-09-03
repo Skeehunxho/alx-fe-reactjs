@@ -60,6 +60,7 @@ const AddTodoForm = ({ addTodo }) => {
         type="text"
         value={text}
         onChange={(e) => setText(e.target.value)}
+        placeholder="Add new todo"
       />
       <button type="submit">Add Todo</button>
     </form>
