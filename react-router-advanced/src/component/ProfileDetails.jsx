@@ -1,9 +1,13 @@
-import React from 'react'
-function ProfileDetails (){
-  return(
+
+function ProfileDetails() {
+  return (
     <div>
-      <h3>Profile Details</h3>
+      <h2>Profile Details</h2>
+      <p>Name: John Doe</p>
+      <p>Email: johndoe@example.com</p>
+      <p>Joined: January 1, 2020</p>
     </div>
-  )
-};
+  );
+}
+
 export default ProfileDetails;
