@@ -17,7 +17,7 @@ function App() {
         <nav>
           <a href="/">Home</a> | 
           <a href="/profile">Profile</a> | 
-          <a href="/posts/1">Blog Post 1</a> | 
+          <a href="/blog/1">Blog Post 1</a> | 
           <button onClick={() => setIsLoggedIn(!isLoggedIn)}>
             {isLoggedIn ? 'Logout' : 'Login'}
           </button>
@@ -40,7 +40,7 @@ function App() {
           </Route>
 
           {/* Dynamic Route for Blog Posts */}
-          <Route path="/posts/:postId" element={<BlogPost />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
         </Routes>
       </div>
     </Router>
