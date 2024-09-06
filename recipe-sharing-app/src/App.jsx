@@ -5,6 +5,7 @@ import './App.css'
 import RecipeList from './components/RecipeList'
 import AddRecipeForm from './components/AddRecipeForm'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {useRecipeStore} from './components/recipeStore'
 
 
 
@@ -17,7 +18,7 @@ function App() {
         <h1>Recipe Sharing Application</h1>
         <SearchBar />
         <AddRecipeForm />
-        
+       <useRecipeStore />
         <FavoritesList />
         <RecommendationsList />
 

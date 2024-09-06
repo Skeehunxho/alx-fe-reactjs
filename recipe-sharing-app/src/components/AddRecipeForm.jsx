@@ -1,6 +1,6 @@
 // AddRecipeForm component
 import { useState } from 'react';
-import { useRecipeStore } from '.component/recipeStore';
+
 
 const AddRecipeForm = () => {
   const addRecipe = useRecipeStore(state => state.addRecipe);
@@ -28,6 +28,7 @@ const AddRecipeForm = () => {
         placeholder="Description"
       />
       <button type="submit">Add Recipe</button>
+      
     </form>
   );
 };
