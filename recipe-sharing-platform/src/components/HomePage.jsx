@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
@@ -11,30 +12,22 @@ const HomePage = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-10">
-        Recipe Sharing Platform
-      </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-8">Recipe List</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {recipes.map((recipe) => (
-          <div
-            key={recipe.id}
-            className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-          >
-            <img
-              src={recipe.image}
-              alt={recipe.title}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-6">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-                {recipe.title}
-              </h2>
-              <p className="text-gray-600">{recipe.summary}</p>
-              <button className="mt-4 text-blue-600 hover:underline">
-                View Recipe
-              </button>
+          <Link key={recipe.id} to={`/recipe/${recipe.id}`}>
+            <div className="recipe-card p-4 bg-white shadow-md rounded-lg">
+              <img
+                src={recipe.image}
+                alt={recipe.title}
+                className="w-full h-40 object-cover rounded-t-lg"
+              />
+              <div className="p-4">
+                <h3 className="text-xl font-semibold mb-2">{recipe.title}</h3>
+                <p className="text-gray-600">{recipe.summary}</p>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
