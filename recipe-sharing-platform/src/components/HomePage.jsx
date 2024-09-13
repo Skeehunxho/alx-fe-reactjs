@@ -1,37 +1,38 @@
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import recipesData from '../data.json'; // Assuming your JSON file is in the src directory
 
 const HomePage = () => {
+  const [recipes, setRecipes] = useState([]);
+
+  useEffect(() => {
+    // In a real app, you would fetch this data from an API.
+    // For now, we are using mock data stored in data.json.
+    setRecipes(recipesData);
+  }, []);
+
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center mb-6">Recipe Sharing Platform</h1>
-      
-      {/* Add a button to navigate to the Add Recipe Form */}
-      <div className="flex justify-end mb-4">
-        <Link
-          to="/add-recipe"
-          className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-        >
-          Add New Recipe
-        </Link>
-      </div>
-
-      {/* Example: List of recipes with links to their detail pages */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Map through recipes and link to detail page */}
+      <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">Recipe Sharing Platform</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {recipes.map((recipe) => (
-          <Link key={recipe.id} to={`/recipe/${recipe.id}`}>
-            <div className="bg-white shadow-md rounded-lg overflow-hidden">
-              <img
-                src={recipe.image}
-                alt={recipe.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h2 className="text-lg font-bold mb-2">{recipe.title}</h2>
-                <p className="text-gray-700">{recipe.summary}</p>
-              </div>
+          <div key={recipe.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+            <img
+              src={recipe.image}
+              alt={recipe.title}
+              className="w-full h-40 object-cover"
+            />
+            <div className="p-4">
+              <h2 className="text-2xl font-bold mb-2 text-gray-800">{recipe.title}</h2>
+              <p className="text-gray-600">{recipe.summary}</p>
+              <Link
+                to={`/recipe/${recipe.id}`}
+                className="inline-block mt-4 text-blue-500 hover:text-blue-700 font-semibold"
+              >
+                View Recipe
+              </Link>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>
