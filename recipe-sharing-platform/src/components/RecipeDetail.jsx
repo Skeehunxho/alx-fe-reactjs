@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const RecipeDetail = () => {
   const { id } = useParams();
@@ -20,6 +20,18 @@ const RecipeDetail = () => {
 
   return (
     <div className="container mx-auto p-6">
+      <div className="flex justify-between items-center mb-6">
+        {/* Link to go back to the home page */}
+        <Link to="/" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+          Back to Home
+        </Link>
+
+        {/* Link to navigate to the Add Recipe form */}
+        <Link to="/add-recipe" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+          Add New Recipe
+        </Link>
+      </div>
+
       <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-8">{recipe.title}</h1>
       <img
         src={recipe.image}
