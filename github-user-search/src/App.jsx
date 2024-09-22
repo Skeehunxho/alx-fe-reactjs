@@ -1,45 +1,35 @@
 import React, { useState } from 'react';
-import { searchGitHubUser } from './services/githubAPI';
+import axios from 'axios';
+import SearchBar from './components/Searchbar';
+import UserList from './components/UserList';
 
-function App() {
-  const [username, setUsername] = useState('');
-  const [userData, setUserData] = useState(null);
-  const [error, setError] = useState(null);
+const App = () => {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const handleSearch = async () => {
+  const searchUsers = async (username) => {
+    setLoading(true);
     try {
-      const data = await searchGitHubUser(username);
-      setUserData(data);
-      setError(null);  // Clear any previous error
-    } catch (err) {
-      setError('User not found');
-      setUserData(null);
+      const response = await axios.get(`https://api.github.com/search/users?q=${username}`);
+      setUsers(response.data.items);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="App">
-      <h1>GitHub User Search</h1>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Enter GitHub username"
-      />
-      <button onClick={handleSearch}>Search</button>
-
-      {error && <p>{error}</p>}
-      {userData && (
-        <div>
-          <h2>{userData.name}</h2>
-          <p>{userData.bio}</p>
-          <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
-            Visit GitHub Profile
-          </a>
-        </div>
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl mb-4 text-center">GitHub User Search</h1>
+      <SearchBar onSearch={searchUsers} />
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <UserList users={users} />
       )}
     </div>
   );
-}
+};
 
 export default App;
